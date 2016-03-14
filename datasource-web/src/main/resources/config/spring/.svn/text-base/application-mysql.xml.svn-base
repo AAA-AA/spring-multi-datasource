@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop 
+	http://www.springframework.org/schema/aop/spring-aop-3.0.xsd 
+	http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx-3.0.xsd 
+	http://www.springframework.org/schema/mvc 
+	http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd ">
+
+	<context:property-placeholder location="classpath:config/jdbc.properties" />
+
+	<!--初始化数据源 -->
+	<bean id="injectDataSourceFactoryBean"
+		class="com.sicent.operate.common.init.InjectDataSourceFactoryBean" />
+	
+	
+	
+	<!-- 初始化dataSource -->
+	<bean class="com.sicent.operate.common.datasource.DynamicDataSource"
+		id="dataSource">
+		<property name="lenientFallback">
+			<value>false</value>
+		</property>
+		<property name="targetDataSources">
+			<map key-type="java.lang.String">
+				<entry value-ref="dataSource1_1" key="dataSource1_1"></entry>
+				<entry value-ref="dataSource1_8" key="dataSource1_8"></entry>
+				<entry value-ref="dataSource2_1" key="dataSource2_1"></entry>
+				<entry value-ref="dataSource2_8" key="dataSource2_8"></entry>
+				<entry value-ref="dataSource3_1" key="dataSource3_1"></entry>
+				<entry value-ref="dataSource3_8" key="dataSource3_8"></entry>
+				<entry value-ref="dataSource4_1" key="dataSource4_1"></entry>
+				<entry value-ref="dataSource4_8" key="dataSource4_8"></entry>
+				<entry value-ref="dataSource5_1" key="dataSource5_1"></entry>
+				<entry value-ref="dataSource5_8" key="dataSource5_8"></entry>
+				<entry value-ref="dataSource6_1" key="dataSource6_1"></entry>
+				<entry value-ref="dataSource6_8" key="dataSource6_8"></entry>
+				<entry value-ref="dataSource7_1" key="dataSource7_1"></entry>
+				<entry value-ref="dataSource7_8" key="dataSource7_8"></entry>
+				<entry value-ref="dataSource8_1" key="dataSource8_1"></entry>
+				<entry value-ref="dataSource8_8" key="dataSource8_8"></entry>
+				<entry value-ref="dataSource1_3" key="dataSource1_3"></entry>
+				<entry value-ref="dataSource2_3" key="dataSource2_3"></entry>
+				<entry value-ref="dataSource3_3" key="dataSource3_3"></entry>
+				<entry value-ref="dataSource4_3" key="dataSource4_3"></entry>
+				<entry value-ref="dataSource5_3" key="dataSource5_3"></entry>
+				<entry value-ref="dataSource6_3" key="dataSource6_3"></entry>
+				<entry value-ref="dataSource7_3" key="dataSource7_3"></entry>
+				<entry value-ref="dataSource8_3" key="dataSource8_3"></entry>
+				<entry value-ref="dataSource1_9" key="dataSource1_9"></entry>
+				<entry value-ref="dataSource2_9" key="dataSource2_9"></entry>
+				<entry value-ref="dataSource3_9" key="dataSource3_9"></entry>
+				<entry value-ref="dataSource4_9" key="dataSource4_9"></entry>
+				<entry value-ref="dataSource5_9" key="dataSource5_9"></entry>
+				<entry value-ref="dataSource6_9" key="dataSource6_9"></entry>
+				<entry value-ref="dataSource7_9" key="dataSource7_9"></entry>
+				<entry value-ref="dataSource8_9" key="dataSource8_9"></entry>
+				<entry value-ref="dataSource1_10" key="dataSource1_10"></entry>
+				<entry value-ref="dataSource2_10" key="dataSource2_10"></entry>
+				<entry value-ref="dataSource3_10" key="dataSource3_10"></entry>
+				<entry value-ref="dataSource4_10" key="dataSource4_10"></entry>
+				<entry value-ref="dataSource5_10" key="dataSource5_10"></entry>
+				<entry value-ref="dataSource6_10" key="dataSource6_10"></entry>
+				<entry value-ref="dataSource7_10" key="dataSource7_10"></entry>
+				<entry value-ref="dataSource8_10" key="dataSource8_10"></entry>
+				<entry value-ref="baseDataSource" key="baseDataSource"></entry>
+				<entry value-ref="upmsDataSource" key="upmsDataSource"></entry>
+				<entry value-ref="appDataSource" key="appDataSource"></entry>
+				<entry value-ref="appBaseDataSource" key="appBaseDataSource"></entry>
+				<entry value-ref="pushMsg0013DataSource" key="pushMsg0013DataSource"></entry>
+
+				<entry value-ref="snatchMasterDataSource" key="snatchMasterDataSource"></entry>
+				<entry value-ref="snatchSlaveDataSource" key="snatchSlaveDataSource"></entry>
+			</map>
+		</property>
+		<property name="defaultTargetDataSource" ref="appBaseDataSource"></property>
+	</bean>
+
+	<!-- mybatis文件配置，扫描所有mapper文件 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		 <property name="typeAliasesPackage" 
+		 value="com.sicent.app0013.operate.model,com.sicent.snatch.operate.model,
+		 com.sicent.operate.common.db.model,com.sicent.desktop.operate.model,
+		 com.sicent.upms.operate.model,
+		 com.sicent.operate.common.base.dao"/>
+		<!-- <property name="configLocation" value="classpath:config/spring/mybatis.xml" /> -->
+		<property name="mapperLocations" value="classpath*:sqlmaps/**/*.xml" />
+	</bean>
+
+	<!-- 配置sqlSessionTemplate -->
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactory" />
+	</bean>
+
+	<!-- spring与mybatis整合配置，扫描所有dao ,生成与DAO类相同名字的bean（除了首字母小写） -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage"
+		value="com.sicent.app0013.operate.dao,com.sicent.snatch.operate.dao,
+		com.sicent.operate.common.db.dao,com.sicent.desktop.operate.dao,
+		com.sicent.upms.operate.dao" />
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+	</bean>
+</beans>

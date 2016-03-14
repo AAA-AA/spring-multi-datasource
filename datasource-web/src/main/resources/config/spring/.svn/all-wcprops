@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/008_Repo/!svn/ver/17501/Web/sicent-008-operate/trunk/sicent-008-operate/sicent-008-operate-web/src/main/resources/config/spring
+END
+application.xml
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/svn/008_Repo/!svn/ver/16917/Web/sicent-008-operate/trunk/sicent-008-operate/sicent-008-operate-web/src/main/resources/config/spring/application.xml
+END
+application-config.xml
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/svn/008_Repo/!svn/ver/16917/Web/sicent-008-operate/trunk/sicent-008-operate/sicent-008-operate-web/src/main/resources/config/spring/application-config.xml
+END
+application-mysql.xml
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/svn/008_Repo/!svn/ver/17501/Web/sicent-008-operate/trunk/sicent-008-operate/sicent-008-operate-web/src/main/resources/config/spring/application-mysql.xml
+END

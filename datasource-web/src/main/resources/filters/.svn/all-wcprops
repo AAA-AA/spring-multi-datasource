@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/008_Repo/!svn/ver/17807/Web/sicent-008-operate/trunk/sicent-008-operate/sicent-008-operate-web/src/main/resources/filters
+END
+dev2.properties
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/svn/008_Repo/!svn/ver/17807/Web/sicent-008-operate/trunk/sicent-008-operate/sicent-008-operate-web/src/main/resources/filters/dev2.properties
+END
+uat.properties
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/svn/008_Repo/!svn/ver/16946/Web/sicent-008-operate/trunk/sicent-008-operate/sicent-008-operate-web/src/main/resources/filters/uat.properties
+END
+prod.properties
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/svn/008_Repo/!svn/ver/17345/Web/sicent-008-operate/trunk/sicent-008-operate/sicent-008-operate-web/src/main/resources/filters/prod.properties
+END
+dev.properties
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/svn/008_Repo/!svn/ver/17748/Web/sicent-008-operate/trunk/sicent-008-operate/sicent-008-operate-web/src/main/resources/filters/dev.properties
+END

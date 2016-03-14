@@ -1,0 +1,118 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.bingzhilanmo</groupId>
+		<artifactId>datasources-demo</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<groupId>com.bingzhilanmo</groupId>
+	<artifactId>datasource-web</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
+	<name>datasource-web Maven Webapp</name>
+	<url>http://maven.apache.org</url>
+	
+	
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.bingzhilanmo</groupId>
+			<artifactId>datasource-business</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.bingzhilanmo</groupId>
+			<artifactId>datasources-base</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
+	
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<uriEncoding>UTF-8</uriEncoding>
+					<path>/demo-web</path>
+					<port>8089</port>
+				</configuration>
+			</plugin>
+		</plugins>
+		<resources>
+		<!-- 复制非class文件 -->
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>false</filtering>
+				<targetPath>${project.build.directory}/classes/</targetPath>
+			</resource>
+			<resource>
+				<filtering>true</filtering>
+				<directory>src/main/resources/</directory>
+				<includes>
+					<include>config/*.properties</include>
+				</includes>
+				<excludes>
+					<exclude>src/main/resources/filters/*.properties</exclude>
+				</excludes>
+			</resource>
+		</resources>
+	</build>
+	
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<build>
+				<filters>
+					<filter>src/main/resources/filters/dev.properties</filter>
+				</filters>
+			</build>
+		</profile>
+		<profile>
+			<id>dev2</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<build>
+				<filters>
+					<filter>src/main/resources/filters/dev2.properties</filter>
+				</filters>
+			</build>
+		</profile>
+		<profile>
+			<id>test</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<build>
+				<filters>
+					<filter>src/main/resources/filters/uat.properties</filter>
+				</filters>
+			</build>
+		</profile>
+		<profile>
+			<id>prod</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<build>
+				<filters>
+					<filter>src/main/resources/filters/prod.properties</filter>
+				</filters>
+			</build>
+		</profile>
+	</profiles>
+	
+</project>

@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/008_Repo/!svn/ver/17815/Web/sicent-008-operate/trunk/sicent-008-operate/sicent-008-operate-web/src/main/resources/config
+END
+redis.properties
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/svn/008_Repo/!svn/ver/16946/Web/sicent-008-operate/trunk/sicent-008-operate/sicent-008-operate-web/src/main/resources/config/redis.properties
+END
+jdbc.properties
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/svn/008_Repo/!svn/ver/17815/Web/sicent-008-operate/trunk/sicent-008-operate/sicent-008-operate-web/src/main/resources/config/jdbc.properties
+END
+config.properties
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/svn/008_Repo/!svn/ver/16917/Web/sicent-008-operate/trunk/sicent-008-operate/sicent-008-operate-web/src/main/resources/config/config.properties
+END

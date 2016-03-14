@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn" monitorInterval="60">
+	<Appenders>
+		<Console name="CONSOLE" target="SYSTEM_OUT">
+			<PatternLayout>
+				<pattern>[%t][%d{MM-dd HH:mm:ss.SSS}][%c{1}.%M:%L][%p]%x : %m%n
+				</pattern>
+			</PatternLayout>
+		</Console>
+
+		<RollingFile name="ROLLING_FILE" fileName="C:\008\logs\demo.log"
+			filePattern="C:\008\logs\demo-%d{yyyy-MM-dd}-%i.log">
+			<PatternLayout>
+				<pattern>[%t][%d{yyyy-MM-dd HH:mm:ss.SSS}][%c.%M:%L][%p]%x : %m%n
+				</pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1"
+					modulate="true" />
+				<SizeBasedTriggeringPolicy size="100MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="500" />
+		</RollingFile>
+
+		<Async name="ASYNC_APPENDER" errorRef="ROLLING_FILE">
+			<AppenderRef ref="ROLLING_FILE" />
+		</Async>
+
+
+		<!-- <RollingFile name="SNATCH_FILE" fileName="/008/logs/operate/008-snatch-operate.log"
+					 filePattern="/008/logs/operate/008-snatch-%d{yyyy-MM-dd}-%i.log">
+			<PatternLayout>
+				<pattern>[%t][%d{yyyy-MM-dd HH:mm:ss.SSS}][%c.%M:%L][%p]%x : %m%n
+				</pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1"
+										   modulate="true" />
+				<SizeBasedTriggeringPolicy size="100MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="500" />
+		</RollingFile>
+
+		<Async name="ASYNC_SNATCH" errorRef="SNATCH_FILE">
+			<AppenderRef ref="SNATCH_FILE" />
+		</Async> -->
+	</Appenders>
+
+	<Loggers>
+		<Logger name="com.sicent.app0013.operate" level="info"
+			additivity="false">
+			<AppenderRef ref="CONSOLE" />
+		</Logger>
+
+		<Root level="info">
+			<AppenderRef ref="CONSOLE" />
+			<AppenderRef ref="ASYNC_APPENDER" />
+		</Root>
+	</Loggers>
+
+
+	<Loggers>
+		<Logger name="com.sicent.snatch.operate" level="info"
+				additivity="false">
+			<AppenderRef ref="CONSOLE" />
+		</Logger>
+
+		<Root level="info">
+			<AppenderRef ref="CONSOLE" />
+			<AppenderRef ref="ASYNC_SNATCH" />
+		</Root>
+	</Loggers>
+
+</Configuration>
