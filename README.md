@@ -6,3 +6,5 @@ This Is A Demo Use Spring AbstractRoutingDataSource And Aop Realize A Java  Proj
    mvn clean install 编译打包
   使用eclipse 的run里面的命令行》》》  tomcat7:run 运行。端口和项目名可在web项目里面的pom文件中配置.
   
+  在这里非常感谢：上海-不经年 成都-压寨夫人的帮助
+  
