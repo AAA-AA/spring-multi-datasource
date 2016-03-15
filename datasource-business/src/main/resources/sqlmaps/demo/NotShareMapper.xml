@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bingzhilanmo.business.mapper.NotShareMapper" >
+    <resultMap id="BaseResultMap" type="com.bingzhilanmo.business.model.NotShare" >
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="info" property="info" jdbcType="VARCHAR" />
+    </resultMap>
+    
+    <sql id="Base_Column_List" >
+        id, info
+    </sql>
+    
+    <select id="getById" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+        select 
+        <include refid="Base_Column_List" />
+        from not_share
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    
+    <select id="getByIds" resultMap="BaseResultMap" >
+        select 
+        <include refid="Base_Column_List" />
+        from not_share where id in 
+        <foreach collection="list" item="item" open="(" separator="," close=")" >
+            #{item}
+        </foreach>
+    </select>
+    
+    <select id="getByPojo" resultMap="BaseResultMap" parameterType="com.bingzhilanmo.business.model.NotShare" >
+        select 
+        <include refid="Base_Column_List" />
+        from not_share 
+        <where >
+            <if test="id != null" >
+                and id = #{id,jdbcType=BIGINT}
+            </if>
+            <if test="info != null" >
+                and info = #{info,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+    
+    <sql id="getByPageSql" >
+        select a.* from not_share a where 1=1 
+        <if test="params.id != null" >
+            and a.id = #{params.id,jdbcType=BIGINT}
+        </if>
+        <if test="params.info != null" >
+            and a.info = #{params.info,jdbcType=VARCHAR}
+        </if>
+        order by a.id desc
+    </sql>
+    
+    <select id="getByPageList" resultMap="BaseResultMap" parameterType="PageInfo" >
+        select temp.* from (
+        <include refid="getByPageSql" />
+        ) temp limit #{offset}, #{pageSize}
+    </select>
+    
+    <select id="getByPageCount" resultType="java.lang.Integer" parameterType="PageInfo" >
+        select count(1) from (
+        <include refid="getByPageSql" />
+        ) temp 
+    </select>
+    
+    <select id="getAll" resultMap="BaseResultMap" >
+        select 
+        <include refid="Base_Column_List" />
+        from not_share
+    </select>
+    
+    <select id="getAllCount" resultType="java.lang.Integer" >
+        select count(1) from not_share
+    </select>
+    
+    <update id="modify" parameterType="com.bingzhilanmo.business.model.NotShare" >
+        update not_share
+        set info = #{info,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    
+    <update id="modifySelective" parameterType="com.bingzhilanmo.business.model.NotShare" >
+        update not_share
+        <set >
+            <if test="info != null" >
+                info = #{info,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    
+    <insert id="save" parameterType="com.bingzhilanmo.business.model.NotShare" >
+        insert into not_share (id, info)
+        values (#{id,jdbcType=BIGINT}, #{info,jdbcType=VARCHAR})
+    </insert>
+    
+    <insert id="saveBatch" parameterType="java.util.List" >
+        insert into not_share (id, info)
+        values
+        <foreach collection="list" item="item" separator="," >
+            (#{item.id,jdbcType=BIGINT}, #{item.info,jdbcType=VARCHAR})
+        </foreach>
+    </insert>
+    
+    <delete id="delById" parameterType="java.lang.Long" >
+        delete from not_share
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    
+    <delete id="delByIds" >
+        delete from not_share where id in 
+        <foreach collection="list" item="item" open="(" separator="," close=")" >
+            #{item}
+        </foreach>
+    </delete>
+</mapper>

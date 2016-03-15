@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.bingzhilanmo.base.idworker.IdUtils;
 import com.bingzhilanmo.base.result.ApiResult;
 import com.bingzhilanmo.business.service.UserService;
 
@@ -15,7 +16,7 @@ public class UserController {
 	private UserService userService;
 	
 	@RequestMapping("/getById")
-	public ApiResult getUser(Integer id){
+	public ApiResult getUser(Long id){
 		return new ApiResult(userService.getById(id));
 	}
 	
@@ -23,7 +24,7 @@ public class UserController {
 	public ApiResult addUser(){
 		
 		for (int i = 1; i < 20; i++) {
-			userService.AddUsers(i, "test"+i, "test"+i, 34343434);
+			userService.AddUsers(IdUtils.getId(), "test"+i, "test"+i, 34343434);
 		}
 		
 		return new ApiResult();

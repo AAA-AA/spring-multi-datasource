@@ -12,17 +12,17 @@ import org.springframework.stereotype.Service;
 
 @Service
 @DataSource(fixed=false,value="user")
-public class UserService extends BaseServiceSupport<user, Integer>{
+public class UserService extends BaseServiceSupport<user, Long>{
 
     @Resource
     private userMapper userMapper;
 
     @Override
-    public BaseMapper<user, Integer> getMapper() {
+    public BaseMapper<user, Long> getMapper() {
         return userMapper;
     }
     
-    public void AddUsers(Integer id,String name,String pwd,Integer insertTime){
+    public void AddUsers(Long id,String name,String pwd,Integer insertTime){
     	user user=new user();
     	user.setId(id);
     	user.setName(name);
